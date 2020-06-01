@@ -14,7 +14,7 @@ export const getProfileFetch = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       })
         .then((resp) => resp.json())
