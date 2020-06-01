@@ -1,5 +1,7 @@
 import React from "react";
 
-const TournamentList = (props) => <li>{props.name}</li>;
+const TournamentList = (props) => {
+  return <div>{props.name}</div>;
+};
 
 export default TournamentList;

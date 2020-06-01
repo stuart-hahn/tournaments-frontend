@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 import AuthButton from "./users/AuthButton";
 
-const Header = ({ currentUser }) => {
-  console.log(currentUser);
+const Header = () => {
   return (
     <div className='ui secondary pointing menu'>
       <Link to='/' className='item'>

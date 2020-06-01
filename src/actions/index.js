@@ -1,4 +1,9 @@
-import { LOGIN_USER, LOGOUT_USER } from "./types";
+import {
+  LOGIN_USER,
+  LOGOUT_USER,
+  ADD_TOURNAMENTS,
+  FETCH_TOURNAMENTS,
+} from "./types";
 
 const loginUser = (user) => ({
   type: LOGIN_USER,
@@ -83,26 +88,23 @@ export const userPostFetch = (user) => {
   };
 };
 
-// export const getTournamentsFetch = () => {
-//   return (dispatch) => {
-//     const token = localStorage.token;
-//     if (token) {
-//       return fetch("http://localhost:3001/api/v1/tournaments", {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Accept: "application/json",
-//           "Authorization": `Bearer ${token}`,
-//         },
-//       })
-//         .then((resp) => resp.json())
-//         .then((data) => {
-//           if (data.error) {
-//             console.log(data.error);
-//           } else {
-//             dispatch(fetchTournaments(data.tournaments));
-//           }
-//         });
-//     }
-//   };
-// };
+export const fetchTournaments = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_TOURNAMENTS });
+    const token = localStorage.token;
+    if (token) {
+      return fetch("http://localhost:3001/api/v1/tournaments", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      })
+        .then((resp) => resp.json())
+        .then((tournaments) =>
+          dispatch({ type: ADD_TOURNAMENTS, tournaments })
+        );
+    }
+  };
+};
