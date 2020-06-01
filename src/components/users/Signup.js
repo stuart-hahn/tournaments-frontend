@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { userLoginFetch } from "../../actions";
+import { userPostFetch } from "../../actions";
 
-class Login extends React.Component {
+class Signup extends React.Component {
   state = {
     username: "",
     password: "",
@@ -17,7 +17,7 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.userLoginFetch(this.state);
+    this.props.userPostFetch(this.state);
   };
 
   render() {
@@ -62,7 +62,7 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  userLoginFetch: (formValues) => dispatch(userLoginFetch(formValues)),
+  userPostFetch: (formValues) => dispatch(userPostFetch(formValues)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Signup);
