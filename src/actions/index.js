@@ -6,15 +6,3 @@ export const setCurrentUser = (user) => {
     user,
   };
 };
-
-export const loginUser = (credentials) => async (dispatch) => {
-  const response = await fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  });
-
-  dispatch({ type: LOGIN_USER, payload: response.data });
-};
