@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ isLoggedIn }) => {
+import AuthButton from "./users/AuthButton";
+
+const Header = ({ currentUser }) => {
+  console.log(currentUser);
   return (
     <div className='ui secondary pointing menu'>
       <Link to='/' className='item'>
@@ -14,6 +17,7 @@ const Header = ({ isLoggedIn }) => {
         <Link to='/tournaments' className='item'>
           All Tournaments
         </Link>
+        <AuthButton />
       </div>
     </div>
   );

@@ -1,8 +1,12 @@
-import { LOGIN_USER } from "./types";
+import { LOGIN_USER, LOGOUT_USER } from "./types";
 
 const loginUser = (user) => ({
   type: LOGIN_USER,
   payload: user,
+});
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER,
 });
 
 export const getProfileFetch = () => {
