@@ -8,6 +8,7 @@ import PlayerList from "./players/PlayerList";
 import Login from "./users/Login";
 import Signup from "./users/Signup";
 import { getProfileFetch } from "../actions";
+import TournamentListContainer from "./tournaments/TournamentListContainer";
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -18,7 +19,7 @@ class App extends React.Component {
       <div className='ui container'>
         <BrowserRouter>
           <Header />
-          <Route exact path='/' component={TournamentList} />
+          <Route exact path='/' component={TournamentListContainer} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/tournaments' component={TournamentList} />

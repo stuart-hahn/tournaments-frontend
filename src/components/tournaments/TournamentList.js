@@ -1,7 +1,5 @@
 import React from "react";
 
-const TournamentList = () => {
-  return <div>TournamentList</div>;
-};
+const TournamentList = (props) => <li>{props.name}</li>;
 
 export default TournamentList;
