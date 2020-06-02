@@ -8,6 +8,7 @@ import Login from "./users/Login";
 import Signup from "./users/Signup";
 import { getProfileFetch } from "../actions";
 import TournamentsList from "./tournaments/TournamentsList";
+import HomePage from "./HomePage";
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -22,7 +23,7 @@ class App extends React.Component {
           <Route path='/login' component={Login} />
           <Route path='/tournaments' component={TournamentsList} />
           <Route path='/players' component={PlayerList} />
-          <Route path='/' component={TournamentsList} />
+          <Route path='/' component={HomePage} />
         </Switch>
       </div>
     );
