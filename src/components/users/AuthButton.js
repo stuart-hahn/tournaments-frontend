@@ -7,12 +7,11 @@ import { logoutUser } from "../../actions";
 class authButton extends React.Component {
   onLogoutClick = () => {
     this.props.logoutUser();
+    localStorage.removeItem("token");
   };
 
   renderAuthButton = () => {
-    if (this.props.isSignedIn === null) {
-      return null;
-    } else if (this.props.isSignedIn) {
+    if (this.props.isSignedIn) {
       return (
         <button onClick={this.onLogoutClick} className='ui red button'>
           Log Out

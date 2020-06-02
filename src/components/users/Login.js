@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { userLoginFetch } from "../../actions";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
@@ -21,6 +22,9 @@ class Login extends React.Component {
   };
 
   render() {
+    if (this.props.redirect === true) {
+      return <Redirect to='/' />;
+    }
     return (
       <form
         onSubmit={this.handleSubmit}
@@ -61,8 +65,12 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  redirect: state.auth.isSignedIn,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   userLoginFetch: (formValues) => dispatch(userLoginFetch(formValues)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

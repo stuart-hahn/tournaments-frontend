@@ -1,8 +1,7 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import TournamentList from "./tournaments/TournamentList";
 import Header from "./Header";
 import PlayerList from "./players/PlayerList";
 import Login from "./users/Login";
@@ -17,14 +16,14 @@ class App extends React.Component {
   render() {
     return (
       <div className='ui container'>
-        <BrowserRouter>
-          <Header />
-          <Route exact path='/' component={TournamentListContainer} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/tournaments' component={TournamentList} />
-          <Route exact path='/players' component={PlayerList} />
-        </BrowserRouter>
+        <Header />
+        <Switch>
+          <Route path='/signup' component={Signup} />
+          <Route path='/login' component={Login} />
+          <Route path='/tournaments' component={TournamentListContainer} />
+          <Route path='/players' component={PlayerList} />
+          <Route path='/' component={TournamentListContainer} />
+        </Switch>
       </div>
     );
   }

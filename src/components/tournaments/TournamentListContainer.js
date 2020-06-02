@@ -16,7 +16,6 @@ class TournamentListContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return <div>{this.renderTournaments()}</div>;
   }
 }
@@ -25,12 +24,10 @@ const mapDispatchToProps = (dispatch) => {
   return { fetchTournaments: () => dispatch(fetchTournaments()) };
 };
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    tournaments: state.tournaments,
-  };
-};
+const mapStateToProps = (state) => ({
+  tournaments: state.tournaments,
+  requesting: state.requesting,
+});
 
 export default connect(
   mapStateToProps,
