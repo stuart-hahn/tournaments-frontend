@@ -3,7 +3,9 @@ import { combineReducers } from "redux";
 import loginReducer from "./loginReducer";
 import tournamentsReducer from "./tournamentsReducer";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   auth: loginReducer,
   tournaments: tournamentsReducer,
 });
+
+export default rootReducer;

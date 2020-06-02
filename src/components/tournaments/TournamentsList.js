@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchTournaments } from "../../actions";
 
-import TournamentList from "./TournamentList";
+import TournamentList from "./Tournament";
 
-class TournamentListContainer extends React.Component {
+class TournamentsList extends React.Component {
   componentDidMount() {
     this.props.fetchTournaments();
   }
@@ -29,7 +29,4 @@ const mapStateToProps = (state) => ({
   requesting: state.requesting,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TournamentListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TournamentsList);
