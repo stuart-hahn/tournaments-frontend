@@ -3,7 +3,28 @@ import {
   LOGOUT_USER,
   ADD_TOURNAMENTS,
   FETCH_TOURNAMENTS,
+  ADD_PLAYERS,
+  FETCH_PLAYERS,
 } from "./types";
+
+export const fetchPlayers = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_PLAYERS });
+    const token = localStorage.token;
+    if (token) {
+      return fetch("http://localhost:3001/api/v1/players", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      })
+        .then((resp) => resp.json())
+        .then((players) => dispatch({ type: ADD_PLAYERS, players }));
+    }
+  };
+};
 
 const loginUser = (user) => ({
   type: LOGIN_USER,

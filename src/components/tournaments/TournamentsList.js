@@ -2,21 +2,28 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchTournaments } from "../../actions";
 
-import TournamentList from "./Tournament";
+import Tournament from "./Tournament";
 
 class TournamentsList extends React.Component {
   componentDidMount() {
     this.props.fetchTournaments();
   }
 
-  renderTournaments = () => {
-    return this.props.tournaments.tournaments.map((tournament) => {
-      return <TournamentList key={tournament.id} name={tournament.name} />;
-    });
-  };
+  // renderTournaments = () => {
+  //   return this.props.tournaments.map((tournament) => {
+  //     return <Tournament key={tournament.id} name={tournament.name} />;
+  //   });
+  // };
 
   render() {
-    return <div>{this.renderTournaments()}</div>;
+    // return <div>{this.renderTournaments()}</div>;
+    return (
+      <div className='ui relaxed list'>
+        {this.props.tournaments.map((tournament) => (
+          <Tournament key={tournament.id} name={tournament.name} />
+        ))}
+      </div>
+    );
   }
 }
 
@@ -25,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => ({
-  tournaments: state.tournaments,
+  tournaments: state.tournamentsData.tournaments,
   requesting: state.requesting,
 });
 
