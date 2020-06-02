@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect, Link } from "react-router-dom";
 import { userLoginFetch } from "../../actions";
-import { Redirect } from "react-router-dom";
 
-class Login extends React.Component {
+class HomePage extends React.Component {
   state = {
     username: "",
     password: "",
@@ -22,55 +22,79 @@ class Login extends React.Component {
   };
 
   render() {
-    if (this.props.redirect === true) {
-      return <Redirect to='/' />;
+    if (this.props.isSignedIn === true) {
+      return <Redirect to='/players' />;
     }
     return (
-      <form
-        onSubmit={this.handleSubmit}
-        className='ui form error'
-        autoComplete='off'
-      >
-        <div className='field'>
-          <label>Username</label>
-          <input
-            name='username'
-            placeholder='Username...'
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
+      <div className='ui placeholder segment'>
+        <div className='ui two column very relaxed stackable grid'>
+          <div className='column'>
+            <form
+              onSubmit={this.handleSubmit}
+              autoComplete='off'
+              className='ui form'
+            >
+              <div className='field'>
+                <label>Username</label>
+                <div className='ui left icon input'>
+                  <input
+                    name='username'
+                    onChange={this.handleChange}
+                    value={this.state.username}
+                    type='text'
+                    placeholder='Username...'
+                  />
+                  <i className='user icon'></i>
+                </div>
+              </div>
+              <div className='field'>
+                <label>Email</label>
+                <div className='ui left icon input'>
+                  <input
+                    name='email'
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                    type='text'
+                    placeholder='Email...'
+                  />
+                  <i className='envelope icon'></i>
+                </div>
+              </div>
+              <div className='field'>
+                <label>Password</label>
+                <div className='ui left icon input'>
+                  <input
+                    onChange={this.handleChange}
+                    name='password'
+                    placeholder='Password...'
+                    value={this.state.password}
+                    type='password'
+                  />
+                  <i className='lock icon'></i>
+                </div>
+              </div>
+              <button className='ui blue button'>Log In</button>
+            </form>
+          </div>
+          <div className='middle aligned column'>
+            <Link className='ui big button' to='/signup'>
+              <i className='signup icon'></i>
+              Sign Up
+            </Link>
+          </div>
         </div>
-        <div className='field'>
-          <label>Email</label>
-          <input
-            name='email'
-            placeholder='Email...'
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className='field'>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            placeholder='Password...'
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-        </div>
-        <button className='ui primary button'>Log In</button>
-      </form>
+        <div className='ui vertical divider'>Or</div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  redirect: state.auth.isSignedIn,
+  isSignedIn: state.auth.isSignedIn,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   userLoginFetch: (formValues) => dispatch(userLoginFetch(formValues)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
